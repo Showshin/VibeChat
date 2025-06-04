@@ -1,8 +1,16 @@
+<div align="center">
+
 # VibeChat - Ứng dụng Mạng Xã hội và Trò chuyện
 
 VibeChat là một ứng dụng web hiện đại kết hợp giữa mạng xã hội, trò chuyện trực tuyến và lưu trữ đám mây. Ứng dụng được xây dựng với React, Firebase và nhiều công nghệ hiện đại khác để mang đến trải nghiệm người dùng mượt mà và đầy đủ tính năng.
 
+</div>
+
+<div align="center">
+
 ## Tính năng chính
+
+</div>
 
 ### 1. Đăng nhập và Xác thực
 - Đăng nhập bằng email và mật khẩu
@@ -36,7 +44,13 @@ VibeChat là một ứng dụng web hiện đại kết hợp giữa mạng xã 
 - Chuyển đổi ngôn ngữ (Tiếng Việt và Tiếng Anh)
 - Giao diện người dùng hiện đại và phản hồi nhanh
 
+<div align="center">
+
 ## Công nghệ sử dụng
+
+</div>
+
+<div align="center">
 
 - **Frontend**: React, TailwindCSS
 - **Backend**: Firebase (Authentication, Firestore, Storage)
@@ -44,7 +58,13 @@ VibeChat là một ứng dụng web hiện đại kết hợp giữa mạng xã 
 - **Build tool**: Vite
 - **Thư viện khác**: React Router, Lucide React (icons)
 
+</div>
+
+<div align="center">
+
 ## Cài đặt và Chạy
+
+</div>
 
 ### Yêu cầu hệ thống
 - Node.js (phiên bản 14.x hoặc cao hơn)
@@ -86,7 +106,11 @@ yarn dev
 
 5. Truy cập ứng dụng tại `http://localhost:5173`
 
+<div align="center">
+
 ## Triển khai
+
+</div>
 
 Ứng dụng có thể được triển khai lên Firebase Hosting hoặc bất kỳ dịch vụ hosting tĩnh nào khác:
 
@@ -99,7 +123,13 @@ yarn build
 firebase deploy
 ```
 
+<div align="center">
+
 ## Hình ảnh minh họa
+
+</div>
+
+<div align="center">
 
 ### 1. Đăng nhập
 ![Đăng nhập](https://github.com/user-attachments/assets/da769c90-8a57-4f1f-86fa-639af0949337)
@@ -122,10 +152,15 @@ firebase deploy
 ### 7. Lưu trữ tài liệu
 ![Lưu trữ tài liệu](https://github.com/user-attachments/assets/b483319c-eb30-481f-b70d-9ede0f9bb803)
 
-## Giấy phép
+### 8. Các thông tin liên hệ thêm
+![Thông tin liên hệ](https://github.com/user-attachments/assets/61f03981-efd0-4b19-baa2-5029a855732a)
 
-Dự án này được phân phối dưới giấy phép MIT. Xem tệp `LICENSE` để biết thêm thông tin.
+</div>
+
+<div align="center">
 
 ## Tác giả
 
-VibeChat được phát triển bởi [Tên của bạn].
+VibeChat được phát triển bởi Mingon.
+
+</div>
