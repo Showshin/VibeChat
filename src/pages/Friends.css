@@ -1,0 +1,458 @@
+.friends-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.tab-navigation {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 12px 12px 0 0;
+    padding: 0 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tab-navigation button {
+    background: none;
+    border: none;
+    padding: 14px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    color: #555;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.tab-navigation button.active {
+    color: #6366f1;
+    border-bottom: 3px solid #6366f1;
+    font-weight: 600;
+}
+
+.tab-navigation button:hover {
+    background-color: #f5f5f5;
+    color: #6366f1;
+}
+
+.badge {
+    background-color: #ff4c4c;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    margin-left: 5px;
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 76, 76, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(255, 76, 76, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 76, 76, 0);
+    }
+}
+
+.tab-content {
+    background-color: #fff;
+    border-radius: 0 0 12px 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    min-height: 400px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.add-friend-tab h2,
+.requests-tab h2,
+.friends-tab h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #333;
+    font-size: 22px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.add-friend-tab h2::after,
+.requests-tab h2::after,
+.friends-tab h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(to right, #6366f1, #a855f7);
+    border-radius: 3px;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #e0e0e0;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+}
+
+.input-group button {
+    background: linear-gradient(to right, #6366f1, #a855f7);
+    color: white;
+    border: none;
+    padding: 0 24px;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.input-group button:hover {
+    background: linear-gradient(to right, #4f46e5, #9333ea);
+    transform: translateY(-1px);
+}
+
+.input-group button:active {
+    transform: translateY(1px);
+}
+
+.empty-message {
+    text-align: center;
+    color: #888;
+    margin: 50px 0;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.requests-list,
+.friends-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.request-card,
+.friend-card {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.request-card::before,
+.friend-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #6366f1, #a855f7);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.request-card:hover::before,
+.friend-card:hover::before {
+    opacity: 1;
+}
+
+.request-card:hover,
+.friend-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e1e1e1;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #555;
+    font-weight: bold;
+}
+
+.user-info-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.user-details {
+    flex: 1;
+}
+
+.user-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.user-details p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.user-info {
+    margin-bottom: 15px;
+}
+
+.user-info p {
+    margin: 7px 0;
+    color: #555;
+}
+
+.user-info p strong {
+    color: #333;
+}
+
+.request-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.accept-btn,
+.reject-btn,
+.chat-btn {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+}
+
+.accept-btn {
+    background-color: #6366f1;
+    color: white;
+}
+
+.accept-btn:hover {
+    background-color: #4f46e5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+}
+
+.reject-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.reject-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(220, 53, 69, 0.3);
+}
+
+.chat-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.chat-btn:hover {
+    background-color: #4f46e5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+}
+
+.chat-btn svg {
+    font-size: 16px;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Hiệu ứng loading */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.loading-state .dots {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.loading-state .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #0078FF;
+    border-radius: 50%;
+    animation: loadingDots 1.4s infinite ease-in-out both;
+}
+
+.loading-state .dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loading-state .dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes loadingDots {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
+
+/* Thêm CSS cho forward message bar */
+.forward-message-bar {
+    background-color: #0078FF;
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.forward-message-content {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.close-forward {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.close-forward:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Nút chuyển tiếp */
+.forward-btn {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    background-color: #5f5f5f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.forward-btn:hover {
+    background-color: #4a4a4a;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(95, 95, 95, 0.3);
+}
+
+.forward-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}

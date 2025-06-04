@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users collection - users can read any user data but only write their own
+    match /Users/{userId} {
+      allow read;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Messages collection - authenticated users can read and write
+    match /Messages/{messageId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // FriendRequests collection - authenticated users can read and write
+    match /FriendRequests/{requestId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Posts collection (Social) - authenticated users can read all posts
+    // Users can create their own posts, edit/delete their own posts
+    // Users can like/unlike any post by updating only the likes and likedBy fields
+    match /Posts/{postId} {
+      // Allow reading posts for authenticated users
+      allow read: if request.auth != null;
+      
+      // Allow creating posts (must include authorId matching current user)
+      allow create: if request.auth != null && 
+                     request.resource.data.authorId == request.auth.uid;
+      
+      // Allow full updates only if you're the author
+      allow update: if request.auth != null && 
+                     (
+                       // Full update by author
+                       resource.data.authorId == request.auth.uid ||
+                       // OR limited update for likes by any authenticated user
+                       (
+                         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'likedBy']) &&
+                         (
+                           // Adding current user to likedBy array
+                           request.resource.data.likedBy.hasOnly(resource.data.likedBy.concat([request.auth.uid])) ||
+                           // OR removing current user from likedBy array
+                           resource.data.likedBy.hasOnly(request.resource.data.likedBy.concat([request.auth.uid]))
+                         )
+                       )
+                     );
+                     
+      // Allow deletion only by author
+      allow delete: if request.auth != null && resource.data.authorId == request.auth.uid;
+    }
+  }
+} 
