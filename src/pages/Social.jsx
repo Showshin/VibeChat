@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { PlusCircle, Calendar, User, X, Heart, Image, Film, Trash2, ThumbsUp, TrendingUp, Wand2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -23,6 +23,7 @@ import {
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { useLanguage } from '../contexts/LanguageContext';
 import PostCard from '../components/PostCard';
+import UserProfile from '../components/UserProfile';
 
 const Social = () => {
   const navigate = useNavigate();
@@ -47,6 +48,15 @@ const Social = () => {
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
+  const [showProfile, setShowProfile] = useState(false);
+  
+  // Xử lý khi click vào avatar
+  const handleAvatarClick = useCallback(() => setShowProfile(true), []);
+  
+  // Xử lý khi đóng profile
+  const handleProfileClose = useCallback(() => {
+    setShowProfile(false);
+  }, []);
   
   // Fetch posts from Firestore
   useEffect(() => {
@@ -405,7 +415,7 @@ const Social = () => {
   
   return (
     <div className="flex h-screen bg-gray-100">
-      <Navbar activePage="social" />
+      <Navbar activePage="social" onAvatarClick={handleAvatarClick} />
       
       <div className="flex-1 p-4 overflow-auto">
         <div className="max-w-5xl mx-auto md:flex">
@@ -723,6 +733,13 @@ const Social = () => {
             </div>
           </div>
         </div>
+      )}
+      
+      {showProfile && currentUser && (
+        <UserProfile
+          userId={currentUser.uid}
+          onClose={handleProfileClose}
+        />
       )}
     </div>
   );

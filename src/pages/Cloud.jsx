@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Upload, X, Search, Image, Video, FileText, Trash2, Filter, Download } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -17,6 +17,7 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
+import UserProfile from '../components/UserProfile';
 
 /**
  * Trang lưu trữ đám mây cho người dùng
@@ -35,6 +36,15 @@ const Cloud = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [fileToDelete, setFileToDelete] = useState(null);
   const fileInputRef = useRef(null);
+  const [showProfile, setShowProfile] = useState(false);
+  
+  // Xử lý khi click vào avatar
+  const handleAvatarClick = useCallback(() => setShowProfile(true), []);
+  
+  // Xử lý khi đóng profile
+  const handleProfileClose = useCallback(() => {
+    setShowProfile(false);
+  }, []);
 
   /**
    * Lấy danh sách tệp tin của người dùng từ Firestore
@@ -249,7 +259,7 @@ const Cloud = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <Navbar activePage="cloud" />
+      <Navbar activePage="cloud" onAvatarClick={handleAvatarClick} />
       
       <div className="flex-1 p-4 overflow-auto">
         <div className="max-w-6xl mx-auto">
@@ -486,6 +496,13 @@ const Cloud = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {showProfile && currentUser && (
+        <UserProfile
+          userId={currentUser.uid}
+          onClose={handleProfileClose}
+        />
       )}
     </div>
   );
