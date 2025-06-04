@@ -1,5 +1,7 @@
 <div align="center">
 
+![vibechat-background](https://github.com/user-attachments/assets/ee70d2e3-5602-45cf-9b31-f9808bad8ede)
+
 # VibeChat - Ứng dụng Mạng Xã hội và Trò chuyện
 
 VibeChat là một ứng dụng web hiện đại kết hợp giữa mạng xã hội, trò chuyện trực tuyến và lưu trữ đám mây. Ứng dụng được xây dựng với React, Firebase và nhiều công nghệ hiện đại khác để mang đến trải nghiệm người dùng mượt mà và đầy đủ tính năng.
@@ -154,13 +156,5 @@ firebase deploy
 
 ### 8. Các thông tin liên hệ thêm
 ![Thông tin liên hệ](https://github.com/user-attachments/assets/61f03981-efd0-4b19-baa2-5029a855732a)
-
-</div>
-
-<div align="center">
-
-## Tác giả
-
-VibeChat được phát triển bởi Mingon.
 
 </div>
